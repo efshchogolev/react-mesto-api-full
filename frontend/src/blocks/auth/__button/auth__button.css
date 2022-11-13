@@ -1,0 +1,27 @@
+.auth__button {
+  max-width: 358px;
+  min-height: 50px;
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  border-radius: 2px;
+  color: #000;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 0;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+  font-family: "Inter";
+  margin: 216px 0 0 0;
+}
+.auth__button:hover {
+  opacity: 0.8;
+}
+/* .popup__submit-button:disabled {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  opacity: .2;
+  cursor: default;
+} */

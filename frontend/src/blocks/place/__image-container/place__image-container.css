@@ -1,0 +1,6 @@
+.place__image-container {
+  overflow: hidden;
+  min-width: 282px;
+  min-height: 282px;
+  position: relative;
+}

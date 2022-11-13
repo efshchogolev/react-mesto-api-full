@@ -1,0 +1,5 @@
+.popup_isOpen {
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+}

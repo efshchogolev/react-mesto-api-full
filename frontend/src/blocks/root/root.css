@@ -1,0 +1,10 @@
+.root {
+  background-color: #000;
+  color: #fff;
+  min-width: 320px;
+  font-family: 'Inter', 'Arial', 'Helvetica';
+  max-width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
