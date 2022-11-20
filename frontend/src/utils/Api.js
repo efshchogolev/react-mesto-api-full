@@ -14,6 +14,7 @@ class Api {
         "Content-Type": "application/json",
         ...(!!token && { Authorization: `Bearer ${token}` }),
       },
+      credentials: 'include',
       ...(!!data && { body: JSON.stringify(data) }),
     }).then(this._getJsonOrError);
   }
@@ -32,12 +33,12 @@ class Api {
     };
   }
 
-  register(password, email) {
-    return this._getRequest({ url: "/signup", data: { password, email } });
+  register(email, password) {
+    return this._getRequest({ url: "/signup", data: { email, password } });
   }
 
-  authorize(password, email) {
-    return this._getRequest({ url: "/signin", data: { password, email } });
+  authorize(email, password) {
+    return this._getRequest({ url: "/signin", data: { email, password } });
   }
 
   getContent(token) {
@@ -47,6 +48,7 @@ class Api {
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._getHeaders(),
+      credentials: 'include',
     }).then(this._getJsonOrError);
   }
 
@@ -54,6 +56,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._getHeaders(),
+      credentials: 'include',
       body: JSON.stringify({
         name: card.name,
         link: card.link,
@@ -65,6 +68,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._getHeaders(),
+      credentials: 'include',
       body: JSON.stringify({
         avatar: link,
       }),
@@ -74,6 +78,7 @@ class Api {
   getUserInfoFromServer() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._getHeaders(),
+      credentials: 'include',
     }).then(this._getJsonOrError);
   }
 
@@ -82,11 +87,13 @@ class Api {
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: "PUT",
         headers: this._getHeaders(),
+        credentials: 'include',
       }).then(this._getJsonOrError);
     } else {
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: "DELETE",
         headers: this._getHeaders(),
+        credentials: 'include',
       }).then(this._getJsonOrError);
     }
   }
@@ -95,6 +102,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._getHeaders(),
+      credentials: 'include',
       body: JSON.stringify({
         name: name,
         about: about,
@@ -106,12 +114,13 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._getHeaders(),
+      credentials: 'include',
     }).then(this._getJsonOrError);
   }
 }
 
 const api = new Api(
-  "http://localhost:3000/",
+  "http://localhost:3000",
   // "ad5a4fe9-6249-4900-9757-39fd298866ec",
   // "https://auth.nomoreparties.co"
 );

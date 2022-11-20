@@ -33,11 +33,14 @@ function App() {
     return api
       .authorize(email, password)
       .then((data) => {
-        if (!data.token) {
-          return Promise.reject("No data ");
-        }
-        localStorage.setItem("jwt", data.token);
+        // if (!data.token) {
+        //   return Promise.reject("No data ");
+        // }
+        // localStorage.setItem("jwt", data.token);
+        // setLoggedIn(true);
+        setEmail(data.email);
         setLoggedIn(true);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -131,18 +134,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const handleTokenCheck = () => {
-      if (!localStorage.getItem("jwt")) return;
-      const jwt = localStorage.getItem("jwt");
-      api.getContent(jwt).then((res) => {
+    // const handleTokenCheck = () => {
+    //   console.log(document.cookie)
+    //   if (!localStorage.getItem("jwt")) return;
+    //   const jwt = localStorage.getItem("jwt");
+      api.getContent().then((res) => {
         if (res) {
           setEmail(res.data.email);
           setLoggedIn(true);
           navigate("/");
         }
       });
-    };
-    handleTokenCheck();
+    // };
+    // handleTokenCheck();
   }, []);
 
   useEffect(() => {
