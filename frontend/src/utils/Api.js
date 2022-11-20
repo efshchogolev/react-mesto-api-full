@@ -1,6 +1,5 @@
 class Api {
-  constructor(host, token, baseUrl) {
-    this._host = host;
+  constructor(baseUrl, token) {
     this._token = token;
     this._baseUrl = baseUrl;
 
@@ -46,13 +45,13 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this._host}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._getHeaders(),
     }).then(this._getJsonOrError);
   }
 
   createCard(card) {
-    return fetch(`${this._host}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._getHeaders(),
       body: JSON.stringify({
@@ -63,7 +62,7 @@ class Api {
   }
 
   setUserAvatar(link) {
-    return fetch(`${this._host}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._getHeaders(),
       body: JSON.stringify({
@@ -73,19 +72,19 @@ class Api {
   }
 
   getUserInfoFromServer() {
-    return fetch(`${this._host}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._getHeaders(),
     }).then(this._getJsonOrError);
   }
 
   changeLikeCardStatus(id, isNotLiked) {
     if (isNotLiked) {
-      return fetch(`${this._host}/cards/${id}/likes`, {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: "PUT",
         headers: this._getHeaders(),
       }).then(this._getJsonOrError);
     } else {
-      return fetch(`${this._host}/cards/${id}/likes`, {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: "DELETE",
         headers: this._getHeaders(),
       }).then(this._getJsonOrError);
@@ -93,7 +92,7 @@ class Api {
   }
 
   setUserInfo({ name, about }) {
-    return fetch(`${this._host}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._getHeaders(),
       body: JSON.stringify({
@@ -104,7 +103,7 @@ class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._host}/cards/${id}`, {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._getHeaders(),
     }).then(this._getJsonOrError);
@@ -112,9 +111,9 @@ class Api {
 }
 
 const api = new Api(
-  "https://mesto.nomoreparties.co/v1/cohort-47",
-  "ad5a4fe9-6249-4900-9757-39fd298866ec",
-  "https://auth.nomoreparties.co"
+  "http://localhost:3000/",
+  // "ad5a4fe9-6249-4900-9757-39fd298866ec",
+  // "https://auth.nomoreparties.co"
 );
 
 export default api;
