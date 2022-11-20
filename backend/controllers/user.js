@@ -15,7 +15,7 @@ module.exports.getUsers = (req, res, next) => {
 };
 
 module.exports.getMe = (req, res, next) => {
-  User.findOne({ _id: req.user._id }).then((user) => res.send({ user }))
+  User.findOne({ _id: req.user._id }).then((user) => res.send(user))
     .catch((err) => next(err));
 };
 
@@ -23,7 +23,7 @@ module.exports.getUserById = (req, res, next) => {
   User.findById(req.params.userId)
     .orFail(new Error('Not Found'))
 
-    .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.message === 'Not Found') {
         next(new NotFoundError('Пользователь не найден'));
@@ -83,7 +83,7 @@ module.exports.updateUserInfo = (req, res, next) => {
     { name, about },
     { new: true, runValidators: true },
   )
-    .then((user) => res.status(200).send({ user }))
+    .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new DataError('Ошибка валидации'));

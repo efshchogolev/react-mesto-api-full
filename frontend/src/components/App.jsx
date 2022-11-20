@@ -139,8 +139,9 @@ function App() {
     //   if (!localStorage.getItem("jwt")) return;
     //   const jwt = localStorage.getItem("jwt");
       api.getContent().then((res) => {
+        console.log(res)
         if (res) {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setLoggedIn(true);
           navigate("/");
         }

@@ -33,7 +33,7 @@ function Main({
         <button className="profile__add-button" onClick={onAddPlace}></button>
       </section>
       <section className="elements">
-        {cards.cards.map((card) => (
+        {cards.map((card) => (
           <Card
             onCardDelete={onCardDelete}
             card={card}
