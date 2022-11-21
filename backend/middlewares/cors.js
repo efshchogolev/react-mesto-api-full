@@ -1,9 +1,11 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'https://localhost:3001',
   'http://localhost:3001',
+  'http://localhost:3000',
   'http://shchegolef.nomoredomains.club/',
   'https://shchegolef.nomoredomains.club/',
+  'http://api.shchegolef.nomoredomains.club/',
+  'https://api.shchegolef.nomoredomains.club/',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
