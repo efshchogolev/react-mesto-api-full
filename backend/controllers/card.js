@@ -43,7 +43,7 @@ module.exports.likeCard = (req, res, next) => Card.findByIdAndUpdate(
   { new: true },
 )
   .orFail(new NotFoundError('Карточка не найдена'))
-  .then(() => res.send({ message: 'Лайк поставлен' }))
+  .then((card) => res.send(card))
   .catch((err) => {
     if (err.name === 'CastError') {
       next(new DataError('Ошибка валидации'));
@@ -58,7 +58,7 @@ module.exports.dislikeCard = (req, res, next) => Card.findByIdAndUpdate(
   { new: true },
 )
   .orFail(new NotFoundError('Карточка не найдена'))
-  .then(() => res.send({ message: 'Лайк удален' }))
+  .then((card) => res.send(card))
   .catch((err) => {
     if (err.name === 'CastError') {
       next(new DataError('Ошибка валидации'));

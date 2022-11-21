@@ -120,9 +120,10 @@ function App() {
       .getUserInfoFromServer()
       .then((data) => {
         setCurrentUser(data);
+        setEmail(data.email)
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     api
@@ -139,7 +140,6 @@ function App() {
     //   if (!localStorage.getItem("jwt")) return;
     //   const jwt = localStorage.getItem("jwt");
       api.getContent().then((res) => {
-        console.log(res)
         if (res) {
           setEmail(res.email);
           setLoggedIn(true);
@@ -156,7 +156,8 @@ function App() {
   }, [loggedIn]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
+    console.log(card.likes)
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
