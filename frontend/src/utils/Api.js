@@ -124,7 +124,7 @@ class Api {
 }
 
 const api = new Api(
-  "http://api.shchegolef.nomoredomains.club/",
+  "https://api.shchegolef.nomoredomains.club/",
 );
 
 export default api;
