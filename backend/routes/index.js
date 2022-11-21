@@ -9,7 +9,7 @@ const { validateLogin, validateRegistration } = require('../utils/validators/use
 
 router.post('/signin', validateLogin, login);
 router.post('/signup', validateRegistration, createUser);
-router.get('/signout', (req, res) => {
+router.get('/signout', (req, res) => { //
   res.clearCookie('jwt').send({ message: 'Выход' });
 });
 
