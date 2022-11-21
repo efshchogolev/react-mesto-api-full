@@ -33,11 +33,6 @@ function App() {
     return api
       .authorize(email, password)
       .then((data) => {
-        // if (!data.token) {
-        //   return Promise.reject("No data ");
-        // }
-        // localStorage.setItem("jwt", data.token);
-        // setLoggedIn(true);
         setEmail(data.email);
         setLoggedIn(true);
         navigate("/");
@@ -123,7 +118,7 @@ function App() {
         setEmail(data.email)
       })
       .catch((err) => console.log(err));
-  }, [currentUser]);
+  }, [loggedIn]);
 
   useEffect(() => {
     api
@@ -135,10 +130,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // const handleTokenCheck = () => {
-    //   console.log(document.cookie)
-    //   if (!localStorage.getItem("jwt")) return;
-    //   const jwt = localStorage.getItem("jwt");
       api.getContent().then((res) => {
         if (res) {
           setEmail(res.email);
@@ -146,8 +137,6 @@ function App() {
           navigate("/");
         }
       });
-    // };
-    // handleTokenCheck();
   }, []);
 
   useEffect(() => {

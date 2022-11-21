@@ -121,8 +121,6 @@ class Api {
 
 const api = new Api(
   "http://localhost:3000",
-  // "ad5a4fe9-6249-4900-9757-39fd298866ec",
-  // "https://auth.nomoreparties.co"
 );
 
 export default api;
