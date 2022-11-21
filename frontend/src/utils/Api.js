@@ -1,18 +1,18 @@
 class Api {
-  constructor(baseUrl, token) {
-    this._token = token;
+  constructor(baseUrl) {
+    // this._token = token;
     this._baseUrl = baseUrl;
 
     this._getJsonOrError = this._getJsonOrError.bind(this);
     this._getHeaders = this._getHeaders.bind(this);
   }
 
-  _getRequest({ url, method = "POST", token, data }) {
+  _getRequest({ url, method = "POST", data }) {
     return fetch(`${this._baseUrl}${url}`, {
       method,
       headers: {
         "Content-Type": "application/json",
-        ...(!!token && { Authorization: `Bearer ${token}` }),
+        // ...(!!token && { Authorization: `Bearer ${token}` }),
       },
       credentials: 'include',
       ...(!!data && { body: JSON.stringify(data) }),
@@ -28,7 +28,7 @@ class Api {
 
   _getHeaders() {
     return {
-      authorization: this._token,
+      // authorization: this._token,
       "content-type": "application/json",
     };
   }
@@ -41,8 +41,12 @@ class Api {
     return this._getRequest({ url: "/signin", data: { email, password } });
   }
 
-  getContent(token) {
-    return this._getRequest({ url: "/users/me", method: "GET", token });
+  logout() {
+    return this._getRequest({ url: "/signout", method: "GET" })
+  }
+
+  getContent() {
+    return this._getRequest({ url: "/users/me", method: "GET" });
   }
 
   getCards() {
@@ -120,7 +124,8 @@ class Api {
 }
 
 const api = new Api(
-  "http://api.shchegolef.nomoredomains.club/",
+  "http://localhost:3000",
+  // "http://api.shchegolef.nomoredomains.club/",
 );
 
 export default api;

@@ -43,8 +43,13 @@ function App() {
       });
   };
   const handleLogout = () => {
-    localStorage.removeItem("jwt");
-    setLoggedIn(false);
+    return api
+    .logout()
+    .then(()=>{
+      setLoggedIn(false);
+      setCurrentUser({ name: "", about: "", avatar: "" })
+    })
+    .catch((err) => console.log(err));
   };
 
   const handleRegister = (email, password) => {
@@ -137,7 +142,7 @@ function App() {
           navigate("/");
         }
       });
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     if (!loggedIn) return;
