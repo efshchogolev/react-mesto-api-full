@@ -4,8 +4,6 @@ const allowedCors = [
   'http://localhost:3000',
   'http://shchegolef.nomoredomains.club/',
   'https://shchegolef.nomoredomains.club/',
-  'http://api.shchegolef.nomoredomains.club/',
-  'https://api.shchegolef.nomoredomains.club/',
 ];
 
 // eslint-disable-next-line consistent-return
