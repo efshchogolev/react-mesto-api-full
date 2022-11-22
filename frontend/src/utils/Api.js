@@ -124,8 +124,8 @@ class Api {
 }
 
 const api = new Api(
-  // "https://api.shchegolef.nomoredomains.club",
-  "http://localhost:3000",
+  "https://api.shchegolef.nomoredomains.club",
+  // "http://localhost:3000",
 );
 
 export default api;
