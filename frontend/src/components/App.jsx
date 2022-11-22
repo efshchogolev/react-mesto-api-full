@@ -33,9 +33,10 @@ function App() {
     return api
       .authorize(email, password)
       .then((data) => {
-        setEmail(data.email);
+        // setEmail(data.email);
         setLoggedIn(true);
         navigate("/");
+        // console.log(data)
       })
       .catch((err) => {
         console.log(err);
@@ -129,10 +130,10 @@ function App() {
     api
       .getCards()
       .then((data) => {
-        setCards(data);
+        setCards(data.reverse());
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
       api.getContent().then((res) => {
@@ -151,7 +152,6 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i === currentUser._id);
-    console.log(card.likes)
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
