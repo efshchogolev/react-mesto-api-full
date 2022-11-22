@@ -110,6 +110,7 @@ function App() {
     api
       .setUserAvatar(link)
       .then((data) => {
+        console.log(data)
         setCurrentUser(data);
       })
       .then(closeAllPopups())
